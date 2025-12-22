@@ -1,15 +1,27 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
+import { cors } from 'hono/cors';
 
 const app = new Hono()
+app.use("*", cors())
 
 app.get('/', (c) => {
-  return c.text('Hello Hono!')
+  return c.text('GTM simulator here, please send POST requests')
+})
+
+app.post('/', async (c) => {
+  const body =
+    await c.req.json<Record<string, any>>();
+  const eventSource = c.req.header('x-event-source');
+
+  console.log(body, eventSource);
+
+  return c.body(null, 200);
 })
 
 serve({
   fetch: app.fetch,
-  port: 3000
+  port: 4012
 }, (info) => {
-  console.log(`Server is running on http://localhost:${info.port}`)
+  console.log(`GTM simulator is running on http://localhost:${info.port}`)
 })
