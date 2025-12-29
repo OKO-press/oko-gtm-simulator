@@ -7,10 +7,10 @@ export function slugify(input: string): string {
   if (!input) return '';
   
   // Convert to lowercase
-  let result = input.toLowerCase();
+  let result = input;
   
   // Replace spaces and special characters with hyphens
-  result = result.replace(/[^a-z0-9]+/g, '-');
+  result = result.replace(/[^a-zA-Z0-9]+/g, '-');
   
   // Remove leading and trailing hyphens
   result = result.replace(/^-+|-+$/g, '');
