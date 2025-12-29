@@ -1,8 +1,8 @@
-```
-npm install
-npm run dev
-```
+Basic GTM dumper/simulator for local development and testing.
 
-```
-open http://localhost:3000
+POST your events to `http://localhost:4012` and see `log` folder.
+
+```bash
+yarn
+npm run dev
 ```
