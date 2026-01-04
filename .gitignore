@@ -30,3 +30,5 @@ lerna-debug.log*
 # Custom
 log/*
 !log/.gitkeep
+
+dist/
