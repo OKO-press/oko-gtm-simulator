@@ -1,6 +1,7 @@
 {
   "name": "oko-gtm-simulator",
   "type": "module",
+  "license": "UNLICENSED",
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
