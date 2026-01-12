@@ -19,7 +19,7 @@ app.post("/", async (c) => {
   const body = await c.req.json<Record<string, any>>();
   const eventSource = c.req.header("x-event-source");
   const fileName =
-    (eventSource ? slugify(eventSource) + "-" : undefined) + new Date().toISOString() + ".json";
+    new Date().toISOString() + '_' + (eventSource ? slugify(eventSource) : undefined) +  ".json";
 
   await createJsonFile(join(LOG_PATH, fileName), body ?? {});
 
