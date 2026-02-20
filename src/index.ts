@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { join } from "path";
 import { slugify, createJsonFile, cleanupDirectory } from "./lib/index.js";
+import chalk from "chalk";
 
 const LOG_PATH = join(".", "log");
 
@@ -23,7 +24,11 @@ app.post("/", async (c) => {
 
   await createJsonFile(join(LOG_PATH, fileName), body ?? {});
 
-  console.log(`🗄️  Successfully created ${fileName} log file with content:\n`, body);
+  // Enhanced colored console output
+  console.log(chalk.blue("📥 GTM Event Received"));
+  console.log(chalk.green("📄 File created:") + chalk.yellow(` ${fileName}`));
+  console.log(chalk.cyan("📅 Timestamp:") + chalk.white(` ${new Date().toISOString()}`));
+  console.log(chalk.magenta("📋 Event Data:") + chalk.gray("\n" + JSON.stringify(body, null, 2)));
 
   return c.body(null, 200);
 });
@@ -34,6 +39,6 @@ serve(
     port: 4012,
   },
   (info) => {
-    console.log(`GTM simulator is running on http://localhost:${info.port}`);
+    console.log(chalk.cyan(`🚀 GTM Simulator is running on http://localhost:${info.port}`));
   }
 );
